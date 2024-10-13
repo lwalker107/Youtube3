@@ -2,10 +2,9 @@
 
 import { useState } from 'react'
 import SearchBar from './Searchbar';
-import Logo from './Logo';
 import Link from 'next/link';
 import { VideoCameraIcon, BellIcon, UserCircleIcon } from '@heroicons/react/16/solid';
-import ProfileIcon from './ProfileIcon';
+import { FaYoutube } from "react-icons/fa";
 
 const Navbar = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -13,9 +12,9 @@ const Navbar = () => {
   return (
     <header className='flex items-center justify-between px-4 py-2 bg-white shadow-md fixed w-full top-0 z-50'>
         {/* Left Section - Logo */}
-        <div>
+        <div className='flex items-center space-x-4'>
             <Link href='/'>
-                <Logo />
+                <FaYoutube className="text-green-500 text-5xl"/>
             </Link>
         </div>
 

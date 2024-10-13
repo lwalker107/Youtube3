@@ -7,13 +7,13 @@ const VideoCard = ({ video }) => {
   const { title, thumbnails, channelTitle } = snippet;
 
   return (
-    <div className="video-card">
+    <div className="p-4 shadow-lg rounded-lg">
       <Link href={`/watch?v=${video.id.videoId}`}>
-        <Image src={thumbnails.high.url} width={500} height={500} alt={title} className="thumbnail" />
+        <Image src={thumbnails.high.url} width={50} height={50} alt={title} className="w-full h-auto rounded-lg" />
       </Link>
-      <div className="video-info">
-        <h3 className="video-title">{title}</h3>
-        <p className="channel-name">{channelTitle}</p>
+      <div className="mt-2">
+        <h3 className="text-md font-bold">{title}</h3>
+        <p className="text-sm text-gray-600">{channelTitle}</p>
       </div>
     </div>
   );
