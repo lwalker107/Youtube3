@@ -4,12 +4,14 @@ import Image from 'next/image';
 
 const VideoCard = ({ video }) => {
   const { snippet } = video;
-  const { title, thumbnails, channelTitle } = snippet;
+  // Gets high quality images for thumbnails
+  const thumbnailUrl = video.snippet.thumbnails.high.url
+  const { title, channelTitle } = snippet;
 
   return (
     <div className="p-4 shadow-lg rounded-lg">
       <Link href={`/watch?v=${video.id.videoId}`}>
-        <Image src={thumbnails.high.url} width={50} height={50} alt={title} className="w-full h-auto rounded-lg" />
+        <Image src={thumbnailUrl} width={150} height={150} alt={title} className="w-full h-auto rounded-lg" />
       </Link>
       <div className="mt-2">
         <h3 className="text-md font-bold">{title}</h3>
