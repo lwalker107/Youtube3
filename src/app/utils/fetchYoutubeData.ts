@@ -1,10 +1,23 @@
+// Cache 
+let cache = {};
+
+
 // Function to fetch Youtube Videos by category
 export const fetchYoutubeDataByCategory = async (category: string, maxResults: number = 4) => {
-    // Retrieve Youtube API key from env. variables
-    const apiKey = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
-    
-    // construct the URL for the API request with category and max results
-    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=${maxResults}&q=${category}&type=video&key=${apiKey}`;
+      const cacheKey = `${category}-${maxResults}`;
+
+
+      // Check if the data is already cached
+        if (cache[cacheKey]) {
+            console.log('Returning cached data');
+            return cache[cacheKey];
+        }
+
+        // Retrieve Youtube API key from env. variables
+        const apiKey = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
+
+        // construct the URL for the API request with category and max results
+        const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=${maxResults}&q=${category}&type=video&regionCode=US&key=${apiKey}`;
     
     try {
         // Make a GET request to the Youtube Data API
@@ -15,6 +28,10 @@ export const fetchYoutubeDataByCategory = async (category: string, maxResults: n
         
         // Parse the response JSON into a javascript object
         const data = await res.json();
+
+        // Store response in cache
+        cache[cacheKey] = data.items;
+
 
         // Return the list of video items from the response
         return data.items;

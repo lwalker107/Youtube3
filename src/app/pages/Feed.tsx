@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+
 import VideoCard from '../components/VideoCard'
 import { useEffect, useState } from 'react';
 import { fetchYoutubeDataByCategory } from '../utils/fetchYoutubeData';
